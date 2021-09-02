@@ -71,15 +71,21 @@ public  class Auswalk_Logistic {
         @auraenabled public string value {get;set;}
     }
     
-    @auraenabled
-    public static list<itineraryDays> getItineraryData(String OrderId ){
+    @auraenabled(cacheable=true)
+    public static list<itineraryDays> getItineraryData (string OrderId ){
         
-       
-        //order orderdData =[select id,Trip_Option__c from order where id=:OrderId];
-       // String tripOption=orderdData.Trip_Option__c;
-       String tripOption='a025D00000CGxOYQA1';
-        List<Itinerary__c> itiList = [Select id ,name, Day__c,(Select id, name, Supplier_Type__c ,Accommodation__c,Accommodation__r.name,Meal__r.name,Title__c,Comments__c,Transport__r.Name from Itinerary_Days__r) from Itinerary__c where Trip_Option__c =:tripOption Order By Day__c ASC];
-        
+       system.debug('orderid--->'+OrderId);
+       list<Orders__c> orderdData = [select id,Trip_Option__c from Orders__c where id=:OrderId];
+        system.debug('orderdData line 79---->'+orderdData);
+        list<string> tripOption = new list<string>();
+        for(Orders__c q:orderdData)
+        {
+            tripOption.add(q.Trip_Option__c);
+        }
+         system.debug('tripoption id---->'+tripOption);
+        //String tripOption='a025D00000CGxOYQA1';
+        List<Itinerary__c> itiList = [Select id ,name, Day__c,(Select id, name, Supplier_Type__c ,Accommodation__c,Accommodation__r.name,Meal__c,Meal__r.name,Title__c,Comments__c,Transport__r.Name from Itinerary_Days__r) from Itinerary__c where Trip_Option__c in:tripOption Order By Day__c ASC];
+        system.debug('itiList  88---->'+itiList);
         // Code to populate room type info
         Set<String> accIds = new Set<String> ();
         List<Itinerary_Booking_Supplier__c> ibsData = [Select id , Accommodation__c  from Itinerary_Booking_Supplier__c where Itinerary__r.Trip_Option__c =:tripOption AND Supplier_Type__c ='Accomodation'] ;

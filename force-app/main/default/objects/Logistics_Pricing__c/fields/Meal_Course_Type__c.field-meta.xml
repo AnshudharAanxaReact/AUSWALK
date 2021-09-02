@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Meal_Course_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Meal Course Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>One Course</fullName>
+                <default>false</default>
+                <label>One Course</label>
+            </value>
+            <value>
+                <fullName>Two Course</fullName>
+                <default>false</default>
+                <label>Two Course</label>
+            </value>
+            <value>
+                <fullName>Three Course</fullName>
+                <default>false</default>
+                <label>Three Course</label>
+            </value>
+            <value>
+                <fullName>Four Course</fullName>
+                <default>false</default>
+                <label>Four Course</label>
+            </value>
+            <value>
+                <fullName>Five Course</fullName>
+                <default>false</default>
+                <label>Five Course</label>
+            </value>
+            <value>
+                <fullName>Six Course</fullName>
+                <default>false</default>
+                <label>Six Course</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

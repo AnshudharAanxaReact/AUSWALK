@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>self_guided</fullName>
+    <active>true</active>
+    <label>Self Guided</label>
+    <picklistValues>
+        <picklist>Country__c</picklist>
+        <values>
+            <fullName>Australia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>France</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Italy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Japan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Zealand</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Portugal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Spain</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>United Kingdom</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>State__c</picklist>
+        <values>
+            <fullName>New South Wales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Northern</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Queensland</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>South Australia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tasmania</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Territory</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Victoria</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Western Australia</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Read to Export</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready to be published on website</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submit for Approval</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

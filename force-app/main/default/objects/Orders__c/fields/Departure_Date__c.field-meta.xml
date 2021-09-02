@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Departure_Date__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Departure Date</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Departure_Date__c.Trip_Option__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Trip_Option__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Departure_Date__c</referenceTo>
+    <relationshipLabel>Orders</relationshipLabel>
+    <relationshipName>Orderss</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_User</fullName>
+    <columns>NAME</columns>
+    <columns>Trip__c</columns>
+    <columns>Trip_Option__c</columns>
+    <columns>Gross_Amount__c</columns>
+    <columns>Nett_Amount__c</columns>
+    <columns>HSS_Amount__c</columns>
+    <columns>Total_Payment_Received__c</columns>
+    <columns>Total_Amount_Outstanding__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>All User</label>
+</ListView>

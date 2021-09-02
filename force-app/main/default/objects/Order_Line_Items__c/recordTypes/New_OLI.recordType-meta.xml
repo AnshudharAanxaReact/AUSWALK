@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_OLI</fullName>
+    <active>false</active>
+    <label>New OLI</label>
+    <picklistValues>
+        <picklist>Currency_Code__c</picklist>
+        <values>
+            <fullName>AUD</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secured</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

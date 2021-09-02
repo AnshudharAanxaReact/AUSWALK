@@ -1,0 +1,57 @@
+{
+  "status": 0,
+  "result": [
+    {
+      "createdById": "005O0000007H4ciIAC",
+      "createdByName": "Pawan Kumar",
+      "createdDate": "2021-07-26T11:00:03.000Z",
+      "fileName": "globalValueSets/Country.globalValueSet",
+      "fullName": "Country",
+      "id": "0NtO00000008pdeKAA",
+      "lastModifiedById": "005O0000007H4ciIAC",
+      "lastModifiedByName": "Pawan Kumar",
+      "lastModifiedDate": "2021-07-26T11:00:03.000Z",
+      "manageableState": "unmanaged",
+      "type": "GlobalValueSet"
+    },
+    {
+      "createdById": "005O0000007H4ciIAC",
+      "createdByName": "Pawan Kumar",
+      "createdDate": "2021-07-26T10:46:23.000Z",
+      "fileName": "globalValueSets/State.globalValueSet",
+      "fullName": "State",
+      "id": "0NtO00000008pdUKAQ",
+      "lastModifiedById": "005O0000007H4ciIAC",
+      "lastModifiedByName": "Pawan Kumar",
+      "lastModifiedDate": "2021-07-26T10:46:23.000Z",
+      "manageableState": "unmanaged",
+      "type": "GlobalValueSet"
+    },
+    {
+      "createdById": "005O0000007H4ciIAC",
+      "createdByName": "Pawan Kumar",
+      "createdDate": "2021-07-26T10:42:03.000Z",
+      "fileName": "globalValueSets/Currency_Code.globalValueSet",
+      "fullName": "Currency_Code",
+      "id": "0NtO00000008pdPKAQ",
+      "lastModifiedById": "005O0000007H4ciIAC",
+      "lastModifiedByName": "Pawan Kumar",
+      "lastModifiedDate": "2021-07-26T10:42:03.000Z",
+      "manageableState": "unmanaged",
+      "type": "GlobalValueSet"
+    },
+    {
+      "createdById": "005O0000007H4ciIAC",
+      "createdByName": "Pawan Kumar",
+      "createdDate": "2021-07-26T10:57:10.000Z",
+      "fileName": "globalValueSets/City.globalValueSet",
+      "fullName": "City",
+      "id": "0NtO00000008pdZKAQ",
+      "lastModifiedById": "005O0000007H4ciIAC",
+      "lastModifiedByName": "Pawan Kumar",
+      "lastModifiedDate": "2021-07-26T10:57:10.000Z",
+      "manageableState": "unmanaged",
+      "type": "GlobalValueSet"
+    }
+  ]
+}

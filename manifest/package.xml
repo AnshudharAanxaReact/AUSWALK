@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+        <types>
+        <members>aus_AdditionalOLIWebservice</members>
+        <members>aus_LeadResourceWebservice</members>
+        <members>Component_Pricing__c</members>
+        <members>aus_OrderSearchWebservice</members>
+        <members>aus_LeadResourceWebserviceTest</members>
+        <members>TestDataFactoryApexClass</members>
+      <name>ApexClass</name>
+        
+    </types>
+
+      <types>
+        <members>Update_Order_External_Id_on_creation</members>
+         <name>Flow</name>
+    </types>
+    <version>52.0</version>
+</Package>

@@ -1,6 +1,7 @@
 import {LightningElement,api,wire,track} from 'lwc';
 import getItineraryData from '@salesforce/apex/Auswalk_Logistic.getItineraryData';
-
+import saveLogistic from '@salesforce/apex/Auswalk_Logistic.saveLogistic';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class AttachLogistics extends LightningElement {
     @track tableData;
@@ -16,6 +17,7 @@ export default class AttachLogistics extends LightningElement {
     @track HscData;
     @track list=[];
     @track isChecked = false;
+
     
 
   activeSectionMessage = '';
@@ -46,6 +48,30 @@ export default class AttachLogistics extends LightningElement {
 
         accordion.activeSectionName = 'C';
     }
+    saveClick(){
+        console.log('list---51 ',JSON.stringify(this.list));
+        saveLogistic({
+            saveData: this.list
+            
+        }).then((data)=>{
+          
+            const evt = new ShowToastEvent({
+               
+                message: 'Record is saved successfully!',
+                variant: 'success',
+            });
+            this.dispatchEvent(evt);
+        
+         
+            console.log('FromApex ',JSON.stringify(data));
+            
+    
+        }).catch((error)=>{
+            console.log('FromApex ',JSON.stringify(error));
+        });
+        this.list=[];
+        
+    }
     handleChange(event){
         console.log('Enter to event'+event.target.checked);
        let i=event.target.getAttribute('data-id2');
@@ -68,23 +94,23 @@ export default class AttachLogistics extends LightningElement {
               
          }
          if(type=='TOur_Addon'){
-             
+            this.tableData=this.itinerary[i].TOur_Addon[j];
      
          }
          if(type=='Guide'){
-            
+            this.tableData=this.itinerary[i].Guide[j];
          }
          if(type=='Meal'){
-            
+            this.tableData=this.itinerary[i].Meal[j];
          }
          if(type=='Aus_Misc'){
-            
+            this.tableData=this.itinerary[i].Aus_Misc[j];
          }
          if(type=='NationalPark'){
-            
+            this.tableData=this.itinerary[i].NationalPark[j];
          }
          if(type=='Hsc'){
-             
+            this.tableData=this.itinerary[i].Hsc[j];
          } 
            
         
@@ -112,23 +138,24 @@ export default class AttachLogistics extends LightningElement {
               
          }
          if(type=='TOur_Addon'){
-             
+            this.tableData=this.itinerary[i].TOur_Addon[j];
      
          }
          if(type=='Guide'){
-            
+            this.tableData=this.itinerary[i].Guide[j];
          }
          if(type=='Meal'){
-            
+            this.tableData=this.itinerary[i].Meal[j];
          }
          if(type=='Aus_Misc'){
-            
+            this.tableData=this.itinerary[i].Aus_Misc[j];
          }
          if(type=='NationalPark'){
-            
+            this.tableData=this.itinerary[i].NationalPark[j];
          }
          if(type=='Hsc'){
-             
+            this.tableData=this.itinerary[i].Hsc[j];
+
          }
            for(var m=0; m<this.list.length; m++)
            {
@@ -144,7 +171,9 @@ export default class AttachLogistics extends LightningElement {
              console.log('listRemove 138--'+JSON.stringify(this.list));
            }
            }
+
        }
+
        
       
     }

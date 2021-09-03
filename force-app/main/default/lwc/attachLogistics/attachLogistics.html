@@ -75,11 +75,11 @@
 											<tbody>
 												<template for:each ={itineraryDays.Transport} for:item="Transport" for:index="indexchild">
 										
-													<tr key={Transport.Id}>
+													<tr key={Transport.Name}>
 														<td scope="col">
 															<div>
 	
-																<lightning-input class="slds-p-left_xx-large" key={Transport.Name} type="checkbox"  label={Transport.Name} data-id2={index}   data-id="Transport" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+																<lightning-input class="slds-p-left_xx-large"  type="checkbox"  label={Transport.Name} data-id2={index}   data-id="Transport" data-id1={indexchild} onchange={handleChange} ></lightning-input>
 									
 															</div>
 														</td>
@@ -253,7 +253,7 @@
 			</table>
 		</lightning-card>
 		<div align ="right">
-			<lightning-button variant="success" label="Save" title="Successful action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+			<lightning-button variant="success" label="Save" title="Successful action" onclick={saveClick} class="slds-m-left_x-small"></lightning-button>
 		</div>
 	</lightning-card>
 	</template>

@@ -1,0 +1,122 @@
+<template>
+    <div class="slds-text-heading_medium slds-m-top_large slds-border_top">{activeSectionMessage}</div>
+    <lightning-card>
+        <template if:true={tripOption}>
+            <lightning-accordion allow-multiple-sections-open class="example-accordion" active-section-name="A">
+                <lightning-accordion-section name="Trip Option" label="Trip Option">
+                    <table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped slds-max-medium-table--stacked-horizontal"
+                                role="grid" style="table-layout:fixed;">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Checkbox"></div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Trip Option Name">Trip Option Name</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Trip Type">Trip Type</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate" title="Price">Price</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each ={tripOption} for:item="option" for:index="index">
+                                        <tr key={option.tripOptionName}>
+                                            <td>
+                                                <input type="radio" name={option} value={option} onchange={checkboxchangeHandler} data-id="option" data-id2={index} style="margin-right: 5px;" >
+                                            </td>
+                                            <td>
+                                        {option.tripOptionName}
+                                          </td>
+                                        <td>
+                                        {option.tripTypeName}
+                                        </td>
+                                        <td>
+                                        {option.tripPrice}
+                                         </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                                </table>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </template>
+    </lightning-card>
+    <lightning-card title="Clone Trip Record">
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <span></span>
+            </div>
+        </div>
+        <br/>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Supplier Type">Trip Option Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Title">Trip Type</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Information">Price</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Title">Start Date</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Information">End Date</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template  for:each={selectedBoxData} for:item='item' for:index='index'>
+                    <tr key={item.index}>
+                        <td>  
+                          {item.name}
+                        </td>
+                        <td>
+                           {item.type}
+                           </td>
+                           <td>
+                               {item.price}
+                            </td>
+                            <td>
+                                {item.startDate}
+                                </td>
+                                <td>
+                                    {item.endDate}
+                                 </td>
+                    </tr>
+                    <tr key={item.index}>
+                        <td>
+                            <lightning-input type="text" placeholder="Trip Option New Name" class="inputOptionName" onchange={optionNamChangeHandler}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input type="currency" placeholder="Trip Option New Price" class="inputOptionPrice" onchange={priceChangeHandler}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input type="currency" placeholder="New Single Occupancy Price" class="inputSingleOccupancyPrice" onchange={SingleOccupancyPriceChangeHandler}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input type="date" placeholder="New Start Date" class="inputStartDate" onchange={startDateChangeHandler}></lightning-input>
+                        </td>
+                        <td>
+                            <lightning-input type="date" placeholder="New End Date" class="inputEndDate" onchange={endDateChangeHandler}></lightning-input>
+                        </td>
+                    </tr> 
+                </template>
+            </tbody>
+        </table>
+    </lightning-card>
+    <lightning-card>
+    </lightning-card>
+    <br>
+    <div align ="center">
+        <lightning-button variant="destructive" label="Cancel" title="Destructive action" onclick={cancelClickHandler} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="success" label="Clone" title="Successful action" onclick={cloneClickHandler} class="slds-m-left_x-small"></lightning-button>
+    </div>
+</template>

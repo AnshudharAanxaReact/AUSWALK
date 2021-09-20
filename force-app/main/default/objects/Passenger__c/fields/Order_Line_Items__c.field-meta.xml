@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Line_Items__c</fullName>
+    <externalId>false</externalId>
+    <label>Order Line Items</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>$Source.Orders__c</field>
+            <operation>equals</operation>
+            <valueField>Order_Line_Items__c.Orders__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Order_Line_Items__c</referenceTo>
+    <relationshipLabel>Passenger</relationshipLabel>
+    <relationshipName>Passenger</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Name Change Pending</fullName>
+                <default>false</default>
+                <label>Name Change Pending</label>
+            </value>
+            <value>
+                <fullName>Replacement Passenger details pending</fullName>
+                <default>false</default>
+                <label>Replacement Passenger details pending</label>
+            </value>
+            <value>
+                <fullName>Name Correction Pending</fullName>
+                <default>false</default>
+                <label>Name Correction Pending</label>
+            </value>
+            <value>
+                <fullName>Transport Change Request</fullName>
+                <default>false</default>
+                <label>Transport Change Request</label>
+            </value>
+            <value>
+                <fullName>Cancellation Request</fullName>
+                <default>false</default>
+                <label>Cancellation Request</label>
+            </value>
+            <value>
+                <fullName>Add-Ons - Additional</fullName>
+                <default>false</default>
+                <label>Add-Ons - Additional</label>
+            </value>
+            <value>
+                <fullName>Internal Correction/Change</fullName>
+                <default>false</default>
+                <label>Internal Correction/Change</label>
+            </value>
+            <value>
+                <fullName>Accomodation Upgrade</fullName>
+                <default>false</default>
+                <label>Accomodation Upgrade</label>
+            </value>
+            <value>
+                <fullName>Tour Upgrade</fullName>
+                <default>false</default>
+                <label>Tour Upgrade</label>
+            </value>
+            <value>
+                <fullName>Meals Upgrade</fullName>
+                <default>false</default>
+                <label>Meals Upgrade</label>
+            </value>
+            <value>
+                <fullName>Duration/Extension (Option) - Upgrade</fullName>
+                <default>false</default>
+                <label>Duration/Extension (Option) - Upgrade</label>
+            </value>
+            <value>
+                <fullName>Secured</fullName>
+                <default>false</default>
+                <label>Secured</label>
+            </value>
+            <value>
+                <fullName>Initial Deposit - PIF/s Due</fullName>
+                <default>false</default>
+                <label>Initial Deposit - PIF/s Due</label>
+            </value>
+            <value>
+                <fullName>Final Payment Pending</fullName>
+                <default>false</default>
+                <label>Final Payment Pending</label>
+            </value>
+            <value>
+                <fullName>Pending Logistics</fullName>
+                <default>false</default>
+                <label>Pending Logistics</label>
+            </value>
+            <value>
+                <fullName>No Outstandings</fullName>
+                <default>false</default>
+                <label>No Outstandings</label>
+            </value>
+            <value>
+                <fullName>BC Sent (All changes via Logistics)&quot;</fullName>
+                <default>false</default>
+                <label>BC Sent (All changes via Logistics)&quot;</label>
+            </value>
+            <value>
+                <fullName>Travel Pack Sent (Emergency Changes Only)&quot;</fullName>
+                <default>false</default>
+                <label>Travel Pack Sent (Emergency Changes Only)&quot;</label>
+            </value>
+            <value>
+                <fullName>Ready to Export</fullName>
+                <default>false</default>
+                <label>Ready to Export</label>
+            </value>
+            <value>
+                <fullName>Travelling</fullName>
+                <default>false</default>
+                <label>Travelling</label>
+            </value>
+            <value>
+                <fullName>Trip Completed</fullName>
+                <default>false</default>
+                <label>Trip Completed</label>
+            </value>
+            <value>
+                <fullName>Survey Sent</fullName>
+                <default>false</default>
+                <label>Survey Sent</label>
+            </value>
+            <value>
+                <fullName>Feedback Returned (Positive)</fullName>
+                <default>false</default>
+                <label>Feedback Returned (Positive)</label>
+            </value>
+            <value>
+                <fullName>Feedback Returned (Negative)</fullName>
+                <default>false</default>
+                <label>Feedback Returned (Negative)</label>
+            </value>
+            <value>
+                <fullName>Expired/Time out</fullName>
+                <default>false</default>
+                <label>Expired/Time out</label>
+            </value>
+            <value>
+                <fullName>Min Number - Trip Changed</fullName>
+                <default>false</default>
+                <label>Min Number - Trip Changed</label>
+            </value>
+            <value>
+                <fullName>Min Number - Credit issued</fullName>
+                <default>false</default>
+                <label>Min Number - Credit issued</label>
+            </value>
+            <value>
+                <fullName>Min Number - Refunded</fullName>
+                <default>false</default>
+                <label>Min Number - Refunded</label>
+            </value>
+            <value>
+                <fullName>Customer Request</fullName>
+                <default>false</default>
+                <label>Customer Request</label>
+            </value>
+            <value>
+                <fullName>Pax No Show</fullName>
+                <default>false</default>
+                <label>Pax No Show</label>
+            </value>
+            <value>
+                <fullName>Initial Deposit Pending</fullName>
+                <default>false</default>
+                <label>Initial Deposit Pending</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Name Change Pending</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Replacement Passenger details pending</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Name Correction Pending</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Transport Change Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Cancellation Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Add-Ons - Additional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Internal Correction/Change</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Accomodation Upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Tour Upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Meals Upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Temporary Hold</controllingFieldValue>
+            <valueName>Duration/Extension (Option) - Upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hold</controllingFieldValue>
+            <valueName>Initial Deposit Pending</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Secured</controllingFieldValue>
+            <valueName>Secured</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Secured</controllingFieldValue>
+            <valueName>Initial Deposit - PIF/s Due</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Secured</controllingFieldValue>
+            <valueName>Final Payment Pending</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Secured</controllingFieldValue>
+            <valueName>Pending Logistics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>In Progress</controllingFieldValue>
+            <valueName>No Outstandings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>In Progress</controllingFieldValue>
+            <valueName>BC Sent (All changes via Logistics)&quot;</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>In Progress</controllingFieldValue>
+            <valueName>Travel Pack Sent (Emergency Changes Only)&quot;</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>In Progress</controllingFieldValue>
+            <valueName>Ready to Export</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>In Progress</controllingFieldValue>
+            <valueName>Travelling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travelled</controllingFieldValue>
+            <valueName>Trip Completed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travelled</controllingFieldValue>
+            <valueName>Survey Sent</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travelled</controllingFieldValue>
+            <valueName>Feedback Returned (Positive)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Travelled</controllingFieldValue>
+            <valueName>Feedback Returned (Negative)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Expired/Time out</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Min Number - Trip Changed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Min Number - Credit issued</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Min Number - Refunded</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Customer Request</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Pax No Show</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

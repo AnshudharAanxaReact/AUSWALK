@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+<ltng:require styles="{!$Resource.actionModalPopupSize}" />	
+        <!--<c:attachLogistics aura:id="attachLogisticsId"></c:attachLogistics>-->
+        <c:attachLogistics recordId="{!v.recordId}"></c:attachLogistics>
+</aura:component>

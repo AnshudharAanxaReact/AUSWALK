@@ -1,0 +1,320 @@
+<template>
+	<lightning-card >
+	
+		<p class="slds-text-heading_small">{activeSectionMessage}</p>
+		<!--<lightning-button onclick={handleSetActiveSectionC} label="Open Section "></lightning-button>-->
+		<template if:true={itinerary}>
+	
+			<lightning-accordion  allow-multiple-sections-open class="example-accordion"  onsectiontoggle={handleToggleSection} active-section-name="B">
+					<lightning-accordion-section  name='Order Line Item' label='Order Line Item'>
+						<table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped slds-max-medium-table--stacked-horizontal"
+												  role="grid" style="table-layout:fixed;">
+												  <thead>
+													<tr class="slds-line-height_reset">
+														<th class="" scope="col">
+															<div class="slds-truncate" title="Checkbox">Select</div>
+														</th>
+														<th class="" scope="col">
+															<div class="slds-truncate" title="OLI Name">OLI Name</div>
+														</th>
+														<th class="" scope="col">
+															<div class="slds-truncate" title="Passenger Quantity">Passenger Quantity</div>
+														</th>
+														<th class="" scope="col">
+															<div class="slds-truncate" title="Total Amount">Total Amount</div>
+														</th>
+													</tr>
+												</thead>
+								<tbody>
+									<template for:each ={options} for:item="option" for:index="index" >
+										<tr key={option.value}>
+											<td>
+                                                <input type="radio" name={option} value={option} onchange={oliSelectChangeHandler} data-id="option" data-id2={index} style="margin-right: 5px;" >
+                                            </td>
+											<td>{option.value}</td>
+											<td>{option.passengerQuantity}</td>
+											<td>{option.totalAmount}</td>
+										</tr>
+										</template>
+								</tbody>						
+						</table>
+						</lightning-accordion-section>
+				<template for:each ={itinerary} for:item="itineraryDays" for:index="index" >
+					<lightning-accordion-section key={itineraryDays.dayName} name={itineraryDays.dayName} label={itineraryDays.dayName}>
+						<template if:true={itineraryDays.showAccomodation}>
+						
+						
+								<lightning-accordion-section  name="Accomodation" label="Accomodation" >
+	
+									<table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped slds-max-medium-table--stacked-horizontal"
+									role="grid" style="table-layout:fixed;">
+											<thead>
+												<tr class="slds-line-height_reset">
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Checkbox">Select</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Name">Name</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Room Type">Room Type</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Logistic Pricing">Logistic Pricing</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Price Category">Price Category</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Price">Price</div>
+													</th>
+												</tr>
+											</thead>
+										   <tbody>
+												<template for:each ={itineraryDays.Accomodation} for:item="Accomodation" for:index="indexchild">
+													<tr key={Accomodation.Name}>
+														<td >
+															<lightning-input class="slds-p-left_xx-large"  type="checkbox"   data-id2={index}   data-id="Accomodation" data-id1={indexchild} onchange={handleChange}></lightning-input>
+														</td>
+														<td>
+													{Accomodation.Name}
+													  </td>
+													  <td>
+													<lightning-combobox class="roomTypeSelect" name="Room Selection"  value={Accomodation.selectedRoomType}  options={Accomodation.Roomtype} data-id2={index} data-id="Accomodation" data-id1={indexchild} onchange={roomTypeChangeHandler}></lightning-combobox>
+													  </td>
+													  <td>
+														<lightning-combobox  name="Logistic Pricing"  value={Accomodation.logisticPricing}  options={Accomodation.logisticPricing} data-id3={logisticPricing} data-id2={index} data-id="Accomodation" data-id1={indexchild} onchange={accLogisticPricingChangeHandler}></lightning-combobox>
+														  </td>
+													  <td>
+														<lightning-combobox  name="Price Category"  value={Accomodation.priceCategoryList}  options={Accomodation.priceCategoryList} data-id2={index} data-id="Accomodation" data-id1={indexchild} ></lightning-combobox>
+														  </td>
+													  <td>
+														<lightning-input class="slds-p-left_xx-large roomtypePrice"  type="currency" data-id2={index} data-id="Accomodation" data-id1={indexchild} onchange={priceChangeHandler}></lightning-input>
+													  </td>
+													</tr>
+												</template>
+											</tbody>
+										</table>
+	
+								</lightning-accordion-section>
+						
+						</template>
+						<template if:true={itineraryDays.showTransport}>
+							
+								<lightning-accordion-section name="Transport" label="Transport">
+									
+										<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+											<thead>
+												<tr class="slds-line-height_reset">
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Select">Select</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Name">Name</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Logistic Pricing">Logistic Pricing</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Price">Price</div>
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<template for:each ={itineraryDays.Transport} for:item="Transport" for:index="indexchild">
+													<tr key={Transport.Name}>
+														<td scope="col">
+															<div>
+	
+																<lightning-input class="slds-p-left_xx-large"  type="checkbox" data-id2={index}   data-id="Transport" data-id1={indexchild} onchange={handleChange} placeholder="Update Price"></lightning-input>
+									
+															</div>
+														</td>
+														<td scope="col">
+															<div>{Transport.Title}</div>
+														</td>
+														<td scope="col">
+															<lightning-combobox  name="Logistic Pricing"  value={Transport.logisticPricing}  options={Transport.logisticPricing} data-id2={index} data-id="Transport" data-id1={indexchild} onchange={accLogisticPricingChangeHandler}></lightning-combobox>
+															  </td>
+														<td scope="col">
+															<lightning-input class="slds-p-left_xx-large roomtypePrice"  type="currency" data-id2={index} data-id="Transport" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
+														  </td>
+													</tr>
+												</template>
+											</tbody>
+										</table>
+									
+									
+									
+									
+									
+								</lightning-accordion-section>
+							
+						</template>
+						<template if:true={itineraryDays.TOur_Addon}>
+							<p>
+								<lightning-accordion-section name="Tours/Add-on" label="Tours/Add-on">
+									<template for:each ={itineraryDays.TOur_Addon} for:item="TOur_Addon" for:index="indexchild">
+										<lightning-input class="slds-p-left_xx-large" key={TOur_Addon.Name} type="checkbox" label={TOur_Addon.Name} data-id2={index}   data-id="TOur_Addon" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+									</template>
+								</lightning-accordion-section>
+							</p>
+						</template>
+						<template if:true={itineraryDays.Guide}>
+							<p>
+								<lightning-accordion-section name="Guide" label="Guide">
+									<template for:each ={itineraryDays.Guide} for:item="Guide" for:index="indexchild">
+										<lightning-input class="slds-p-left_xx-large" key={Guide.Name} type="checkbox" label={Guide.Name}  data-id2={index}  data-id="Guide" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+									</template>
+								</lightning-accordion-section>
+							</p>
+						</template>
+						<template if:true={itineraryDays.showMeal}>
+							
+								<lightning-accordion-section name="Meal" label="Meal">
+										
+										<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+											<thead>
+												<tr class="slds-line-height_reset">
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Select">Select</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Comments">Name</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Logistic Pricing">Logistic Pricing</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Price Category">Price Category</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Price">Price</div>
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<template for:each ={itineraryDays.Meal} for:item="Meal" for:index="indexchild">
+									
+													<tr key={Meal.Id}>
+														<td scope="col">
+															<div>
+																<lightning-input class="slds-p-left_xx-large" key={Meal.Name} type="checkbox" data-id2={index}   data-id="Meal" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+									
+															</div>
+														</td>
+														<td scope="col">
+															<div>{Meal.Title}</div>
+														</td>
+														<td>
+															<lightning-combobox  name="Logistic Pricing"  value={Meal.logisticPricing}  options={Meal.logisticPricing} data-id2={index} data-id="Meal" data-id1={indexchild} onchange={accLogisticPricingChangeHandler}></lightning-combobox>
+															  </td>
+														<td>
+															<lightning-combobox  name="Price Category"  value={Meal.priceCategoryList}  options={Meal.priceCategoryList} data-id2={index} data-id="Meal" data-id1={indexchild} ></lightning-combobox>
+															  </td>
+														<td scope="col">
+															<lightning-input class="slds-p-left_xx-large roomtypePrice"  type="currency" data-id2={index} data-id="Meal" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
+														  </td>	
+													</tr>
+												</template>
+											</tbody>
+										</table>
+									
+									
+									
+								</lightning-accordion-section>
+							
+						</template>
+						<template if:true={itineraryDays.Aus_Misc}>
+							<p>
+								<lightning-accordion-section name="Auswalk-Misc" label="Auswalk-Misc">
+									<template for:each ={itineraryDays.Aus_Misc} for:item="Aus_Misc" for:index="indexchild">
+										<lightning-input class="slds-p-left_xx-large" key={Aus_Misc.Name} type="checkbox" label={Aus_Misc.Name} data-id2={index}   data-id="Aus_Misc" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+									</template>
+								</lightning-accordion-section>
+							</p>
+						</template>
+						<template if:true={itineraryDays.NationalPark}>
+							<p>
+								<lightning-accordion-section name="National Park" label="National Park">
+									<template for:each ={itineraryDays.NationalPark} for:item="NationalPark" for:index="indexchild">
+										<lightning-input class="slds-p-left_xx-large" key={NationalPark.Name} type="checkbox" label={NationalPark.Name} data-id2={index}   data-id="NationalPark" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+									</template>
+								</lightning-accordion-section>
+							</p>
+						</template>
+						<template if:true={itineraryDays.Hsc}>
+							<p>
+								<lightning-accordion-section name="High Season Surcharge" label="High Season Surcharge" for:index="indexchild">
+									<template for:each ={itineraryDays.Hsc} for:item="Hsc">
+										<lightning-input class="slds-p-left_xx-large" key={Hsc.Name} type="checkbox" label={Hsc.Name} data-id2={index}   data-id="Hsc" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+									</template>
+								</lightning-accordion-section>
+							</p>
+						</template>
+					</lightning-accordion-section>
+				</template>
+			</lightning-accordion>
+		</template>
+		<br/>
+		<br/>
+		<lightning-card title="Booking Supplier Record">
+			<div class="slds-grid slds-gutters">
+				<div class="slds-col">
+					<span></span>
+				</div>
+			</div>
+			<br/>
+			<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+				<thead>
+					<tr class="slds-line-height_reset">
+                     
+						<th class="" scope="col">
+							<div class="slds-truncate" title="Supplier Type">Supplier Type</div>
+						</th>
+						<th class="" scope="col">
+							<div class="slds-truncate" title="Title">Title</div>
+						</th>
+						<th class="" scope="col">
+							<div class="slds-truncate" title="Information">Information</div>
+						</th>
+						<th class="" scope="col">
+							<div class="slds-truncate" title="Day">Day</div>
+						</th>
+						<th class="" scope="col">
+							<div class="slds-truncate" title="Price">Price</div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<template  for:each={list} for:item='item' for:index='index'>
+			 
+						<tr key={item.index}>
+							<td>
+								
+							  {item.SupplierType}
+							</td>
+							<td>
+							   {item.Title}
+							   </td>
+							   <td>
+								   {item.Information}
+								   </td>
+								   <td>
+									   {item.Day}
+									   </td>
+									   <td>
+										{item.Price}
+										</td>
+									 </tr>
+										  
+									</template>
+									
+				</tbody>
+			</table>
+		</lightning-card>
+		<div align ="right">
+			<lightning-button variant="success" label="Save" title="Successful action" onclick={saveClick} class="slds-m-left_x-small"></lightning-button>
+		</div>
+	</lightning-card>
+	</template>

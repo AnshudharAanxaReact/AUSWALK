@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Self_Guided</fullName>
+    <active>true</active>
+    <label>Self Guided</label>
+    <picklistValues>
+        <picklist>Refund_Type__c</picklist>
+        <values>
+            <fullName>Full Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Full refund</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Refund or Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partial Refund</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secured</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporary Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Travelled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Sub_Status__c</picklist>
+        <values>
+            <fullName>Accomodation Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Add-Ons - Additional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BC Sent %28All changes via Logistics%29%22</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancellation Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Duration%2FExtension %28Option%29 - Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired%2FTime out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feedback Returned %28Negative%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feedback Returned %28Positive%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final Payment Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Initial Deposit - PIF%2Fs Due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Initial Deposit Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Correction%2FChange</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meals Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Min Number - Credit issued</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Min Number - Refunded</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Min Number - Trip Changed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Name Change Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Name Correction Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Outstandings</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pax No Show</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Logistics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ready to Export</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Replacement Passenger details pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secured</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey Sent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tour Upgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transport Change Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Travel Pack Sent %28Emergency Changes Only%29%22</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Travelling</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trip Completed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

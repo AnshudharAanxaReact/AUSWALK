@@ -1,0 +1,406 @@
+<aura:component implements="force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable,flexipage:availableForAllPageTypes,lightning:actionOverride,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="createCustomisationController">
+    <aura:attribute type="String" name="showHeaderOrError"/>
+    <aura:attribute name="lstOfOli" type="List"/>
+    <aura:attribute name="proceedCheck" type="Boolean" default="true" />
+    <aura:attribute name="oliSelect" type="Boolean" default="true" />
+    <aura:attribute name="Olid" type="String" default="" />
+    <aura:attribute name="initErrorMessage" type="String"/>
+    <aura:attribute name="oliName" type="String"/>
+    <aura:attribute name="paxNo" type="Decimal"/>
+    <aura:attribute name="finalOCDataWrapper" type="createCustomisationController.finalDataWrapper"/>
+    <aura:attribute name="showAddOn" type="Boolean" default="false"/>
+    <aura:attribute name="selectedPAXIds" type="List"/>
+    <aura:attribute name="ifOLIisSelected" type="Boolean" default="false"/>
+    <aura:attribute name="OLIDetails" type="Boolean" default="false"/>
+    <aura:attribute name="onlyShowPaxName" type="Boolean"/>
+    <aura:attribute name="showPAXList" type="Boolean"/>
+    <aura:attribute name="isAddOnAvailable" type="Boolean" default="false"/>
+    <aura:attribute type="Passenger__c[]" name="paxData"/>
+    <aura:attribute name="paxColumns" type="List"/>
+    <aura:attribute name="addOnOptions" type="OLI_add_on__c[]"/>
+    <aura:attribute name="mainHeader" type="String" default = "Customisation Request"/>
+    <aura:attribute name="listControllingValues" type="list" default="[]" description="to store controller field values"/>
+    <aura:attribute name="depnedentFieldMap" type="map" description="map to store dependent values with controlling value"/>
+    <aura:attribute name="bDisabledDependentFld" type="boolean" default="true"/>
+    
+    <aura:attribute name="ibsMapForDays" type="map"/>
+    <aura:attribute name="customisationTypeList" type="List"/>
+    <aura:attribute name="showMealList" type="Boolean" default="false"/>
+    <aura:attribute name="showAccomList" type="Boolean" default="false"/>
+    <aura:attribute name="showAccomListRec" type="createCustomisationController.supplierTypeWrapper[]"/>
+    <aura:attribute name="showTransportList" type="Boolean" default="false"/>
+    <aura:attribute name="setDataFromTheMap" type="Object"/>
+    <aura:attribute name="recordsData" type="Object"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    
+    <aura:html tag="style">
+        .slds-modal__container {
+        min-width: 60vw;
+        
+        }
+    </aura:html>
+    <div></div>
+    <div class="slds-box slds-theme_default">
+        
+        <aura:if isTrue="{!equals(v.proceedCheck, true)}">
+            <div class="slds-align_absolute-center slds-size_1-of-1">
+                <h4 class="title slds-text-heading--medium"><b>{!v.mainHeader}</b></h4>
+            </div>
+            <br></br>
+            <aura:if isTrue="{!v.oliSelect}">
+               
+                <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_resizable-cols" role="grid">
+                        <thead class="header">
+                            <tr class="slds-line-height_reset slds-text-heading_small">
+                                 <td scope="row">
+                                  </td>
+
+                                <th scope="col" width="10%"  class="slds-text-align_center"><b>Order Line Item Name</b></th>
+                                <th scope="col" width="21%" class="slds-text-align_center"><b>Departure Date</b></th>
+                                <th scope="col" width="13%" class="slds-text-align_center"><b>Total Amount</b></th>
+                                <th scope="col" width="13%" class="slds-text-align_center"><b>HSS Amount</b></th>
+                                
+                            </tr>      
+                        </thead> 
+                        
+                        <tbody class="body">
+                            
+                            <aura:iteration items="{!v.lstOfOli}" var="rd" indexVar="index">
+                                
+                                <tr class="{!equals(rd.level, 'OLI')? 'slds-theme_shade': ''}" >
+                                    <td scope="row">
+                                        <ui:inputCheckbox aura:id="recordSelected" value="{!rd.check}" change="c.checkChilds" name="{!index}" disabled="{!v.editableCheckbox}"/> </td>
+                                  
+                                    <td scope="row" class="slds-text-align--center">{!rd.Name}</td>
+                                   
+                                        <td scope="row" class="slds-text-align--center">{!rd.Departure_Date__r.Name}</td>
+                                       
+                                            <td scope="row" class="slds-text-align--center">$&nbsp;{!rd.Total_Amount__c}</td>   
+                                      
+                                  
+                                    <td scope="row" class="slds-text-align--center">$&nbsp;{!rd.HSS_Amount__c}</td>
+                                                            
+                                     
+                                    
+                                    
+                                </tr>
+                                
+                            </aura:iteration>
+                        </tbody>
+                        
+                    </table>
+                    
+                <br></br>
+                <div class="slds-align_absolute-center">
+                    <lightning:button variant="brand" label="Cancel" onclick="{!c.closeModal}"/>
+                    <lightning:button variant="brand" label="Next" onclick="{!c.fetchOrderCustomisationRecordTypes}"/>
+                </div>
+            </aura:if>   
+            
+            <aura:if isTrue="{!v.ifOLIisSelected}">
+                <lightning:layoutItem flexibility="auto" padding="around-small"
+                                      size="12"
+                                      largeDeviceSize="12"
+                                      mediumDeviceSize="12"
+                                      smallDeviceSize="12">
+                    <lightning:input type="checkbox" checked="{!v.isAddOnAvailable}" label="Does this customisation relate to an existing AddOn?" disabled="{!empty(v.addOnOptions)}" aura:id="isAddOnAvailable" name="isAddOnAvailable"/>
+                    <aura:if isTrue="{!empty(v.addOnOptions)}">
+                        <p style="color:red">No AddOn Available</p>
+                    </aura:if>
+                    
+                    <!--   <h1>Does this customisation relate to an existing AddOn?</h1> -->
+                </lightning:layoutItem>
+                
+                <br></br>
+                
+                <div class="slds-align_absolute-center">
+                    <lightning:button variant="brand" label="Cancel" onclick="{!c.closeModal}"/>
+                    <lightning:button variant="brand" label="Next" onclick="{!c.addOnConfirmation}"/>
+                </div>
+            </aura:if>
+            
+            
+            <!--    Add On Show   -->  
+            <aura:if isTrue="{!v.showAddOn}">
+                <lightning:layoutItem flexibility="auto" padding="around-small"
+                                      
+                                      size="12"
+                                      
+                                      largeDeviceSize="12"
+                                      
+                                      mediumDeviceSize="12"
+                                      
+                                      smallDeviceSize="12">
+                    
+                    <lightning:select name="selectAddOn" required="true" messageWhenValueMissing="Select an Add On" aura:id="selectAddOn" label="Select AddOn">
+                        <option value="" text="--- NONE ---"/>  
+                        <aura:iteration items="{!v.addOnOptions}" var="addOn">
+                            <option value="{!addOn.AddOn_Name__c + '-' + addOn.Add_On_Type__c}" selected = "{!addOn.AddOn_Name__c + '-' + addOn.Add_On_Type__c == v.selectedAddOn}">{!addOn.AddOn_Name__c} - {!addOn.Add_On_Type__c}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                </lightning:layoutItem>
+                
+                <br></br>
+                <div class="slds-align_absolute-center">
+                    <lightning:button variant="brand" label="Cancel" onclick="{!c.closeModal}"/>
+                    <lightning:button variant="brand" label="Next" onclick="{!c.addOnSubmitted}"/>
+                </div>
+            </aura:if>
+            
+            <aura:if isTrue="{!v.OLIDetails}">
+                <lightning:layoutItem>                 
+                    
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-2">
+                            <b> Order Line Item Number </b>
+                            <ui:outputText value="{!v.finalOCDataWrapper.orderLineItemName}"/> 
+                        </div>  
+                    </div>
+                    <br></br> <br></br>
+                    <aura:if isTrue="{!v.showPAXList}">
+                        <div class="slds-scrollable_x">
+                            
+                            <lightning:datatable data="{!v.paxData}" 
+                                                 columns="{!v.paxColumns}" 
+                                                 keyField="paxId"
+                                                 hideCheckboxColumn="flase"
+                                                 class="slds-scrollable_x"
+                                                 onrowselection="{! c.getSelectedPaxName }"
+                                                 selectedRows = "{!v.selectedPAXRows}"/>
+                        </div>
+                        <br></br>
+                        
+                        <b>No of PAX Selected</b><br></br>
+                        <ui:outputText value="{!v.finalOCDataWrapper.selectedPAXQuantity}"/>  
+                        
+                    </aura:if>
+                    <br></br>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning:select name="controllerFld"
+                                              label="Itinerary Day"
+                                              value="{!v.finalOCDataWrapper.itineraryDays}"
+                                              onchange="{!c.getItineraryData}"
+                                              aura:id="ItineraryDaysPickList">
+                                <option value="" text="Select"/>
+                                
+                                <aura:iteration items="{!v.finalOCDataWrapper.ITR}" var="item" indexVar="index">
+                                    <option value="{!item.dayId}">{!item.dayName}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>            
+                        
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning:select name="controllerFld"
+                                              label="Customisation  Type"
+                                              value="{!v.finalOCDataWrapper.customizationType}"
+                                              onchange="{!c.onCustomisationTypeChange}"
+                                              aura:id="recordTypePickList">
+                                <option value="" text="Select"/>
+                                
+                                <aura:iteration items="{!v.customisationTypeList}" var="item" indexVar="index">
+                                    <option value="{!item.key}">{!item.key}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>  
+                    </div>
+                    
+                    <br></br>
+                    
+                    <aura:if isTrue = "{!v.showMealList}">
+                        <div class="slds-box">
+                            <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_resizable-cols">
+                                <thead class="header">
+                                    <tr class="slds-line-height_reset slds-text-heading_small">
+                                        <th scope="col" width="4%"></th>
+                                        <th scope="col" width="25%" class="slds-text-align_center"><b>Name</b></th>
+                                        <th scope="col" width="50%" class="slds-text-align_center"><b>Comments</b></th>
+                                        <th scope="col" width="21%" class="slds-text-align_center"><b>Merchant Price</b></th>
+                                    </tr>      
+                                </thead> 
+                                <tbody>
+                                    
+                                    <aura:iteration items="{!v.finalOCDataWrapper.supplierTypeWrapper}" var="rd" indexVar="index">
+                                        
+                                        <tr>
+                                        <td scope="row">
+                                            <ui:inputCheckbox aura:id="recordSelected" value="{!rd.check}" name="{!index}"/></td>
+                                        <td scope="row">{!rd.supplierName}</td>
+                                       <aura:if isTrue="{!equals(rd.check, true)}">
+                                          <td scope="row">
+                                            <lightning:input variant="label-hidden" name="{!index}" value ="{!rd.supplierComments}" type="string" />
+                                        </td>
+                                            <td scope="row">
+                                            <lightning:input variant="label-hidden" name="{!index}" value ="{!rd.merchantPrice}" type="number" formatter="currency" onchange="{!c.onChangePrice}"/>
+                                        </td>
+                                            </aura:if>
+                                            <aura:if isTrue="{!equals(rd.check, false)}">
+                                          <td scope="row">
+                                           
+                                        </td>
+                                        <td scope="row">
+                                           
+                                        </td>
+                                            </aura:if>
+                                       
+                                       
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                        </div>
+                    </aura:if>
+                    
+                    <aura:if isTrue = "{!v.showAccomList}">
+                         <div class="slds-box">
+                            <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_resizable-cols">
+                                <thead class="header">
+                                    <tr class="slds-line-height_reset slds-text-heading_small">
+                                        <th scope="col" width="4%"></th>
+                                        <th scope="col" width="25%" class="slds-text-align_center"><b>Name</b></th>
+                                        <th scope="col" width="50%" class="slds-text-align_center"><b>Comments</b></th>
+                                        <th scope="col" width="40%" class="slds-text-align_center"><b>Room Type</b></th>
+                                         <th scope="col" width="21%" class="slds-text-align_center"><b>Merchant Price</b></th>
+                                    </tr>      
+                                </thead> 
+                                <tbody>
+                                    
+                                    <aura:iteration items="{!v.finalOCDataWrapper.supplierTypeWrapper}" var="rd" indexVar="index">
+                                        <tr>
+                                        <td scope="row">
+                                            <ui:inputCheckbox aura:id="recordSelected" value="{!rd.check}" name="{!index}"/></td>
+                                        <td scope="row">{!rd.supplierName}</td>
+                                        <!--  <td scope="row">&nbsp;{!rd.supplierComments}</td>  -->
+                                          
+                                       <!-- <td scope="row">{!rd.roomType}</td> -->
+                                            
+                                    <aura:if isTrue="{!equals(rd.check, true)}">
+                                          <td scope="row">
+                                            <lightning:input variant="label-hidden" name="{!index}" value ="{!rd.supplierComments}" type="string" />
+                                        </td>
+                                        <td scope="row">
+                                            <lightning:select class="nolabel" variant="label-hidden" aura:id="RoomType">
+                                                <option value="" text="--- NONE ---"/> 
+                                                <aura:iteration items="{!rd.roomType}" var="item">
+                                                    <option value="{!item}" text="{!item}"/>
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </td>
+                                      
+                                        <td scope="row">
+                                            <lightning:input variant="label-hidden" name="{!index}" value ="{!rd.merchantPrice}" type="number" formatter="currency" onchange="{!c.onChangePrice}"/>
+                                        </td>
+                                    </aura:if>
+                                    
+                                            <aura:if isTrue="{!equals(rd.check, false)}">
+                                          <td scope="row">
+                                           
+                                        </td>
+                                        <td scope="row">
+                                           
+                                        </td>
+                                      
+                                        <td scope="row">
+                                           
+                                        </td>
+                                    </aura:if>
+                                     <!--   <td scope="row">{!rd.merchantPrice}</td>  -->
+                                            
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                        </div>
+                    </aura:if>
+                    
+                    <aura:if isTrue = "{!v.showTransportList}">
+                         <div class="slds-box">
+                            <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table_resizable-cols">
+                                <thead class="header">
+                                    <tr class="slds-line-height_reset slds-text-heading_small">
+                                        <th scope="col" width="4%"></th>
+                                        <th scope="col" width="25%" class="slds-text-align_center"><b>Name</b></th>
+                                        <th scope="col" width="50%" class="slds-text-align_center"><b>Comments</b></th>
+                                        <th scope="col" width="21%" class="slds-text-align_center"><b>Merchant Price</b></th>
+                                    </tr>      
+                                </thead> 
+                                <tbody>
+                                    
+                                    <aura:iteration items="{!v.finalOCDataWrapper.supplierTypeWrapper}" var="rd" indexVar="index">
+                                        <tr>
+                                        <td scope="row">
+                                            <ui:inputCheckbox aura:id="recordSelected" value="{!rd.check}" name="{!index}"/></td>
+                                        <td scope="row">{!rd.supplierName}</td>
+                                        <!--  <td scope="row">&nbsp;{!rd.supplierComments}</td>  -->
+                                          
+                                       <!-- <td scope="row">{!rd.roomType}</td> -->
+                                            
+                                    <aura:if isTrue="{!equals(rd.check, true)}">
+                                          <td scope="row">
+                                            <lightning:input variant="label-hidden" name="{!index}" value ="{!rd.supplierComments}" type="string" />
+                                        </td>
+                                      
+                                        <td scope="row">
+                                            <lightning:input variant="label-hidden" name="{!index}" value ="{!rd.merchantPrice}" type="number" formatter="currency" onchange="{!c.onChangePrice}"/>
+                                        </td>
+                                    </aura:if>
+                                    
+                                            <aura:if isTrue="{!equals(rd.check, false)}">
+                                          <td scope="row">
+                                           
+                                        </td>
+                                        <td scope="row">
+                                           
+                                        </td>
+                                      
+                                       
+                                    </aura:if>
+                                     <!--   <td scope="row">{!rd.merchantPrice}</td>  -->
+                                            
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                        </div>
+                    </aura:if>
+                    
+                    <!-- <ui:outputText value="{!v.paxNameInReadOnly}"/> -->
+                    <aura:if isTrue="{!v.onlyShowPaxName}">
+                        <b> Passenger Name</b> <br></br>
+                        <ui:outputText value="{!v.finalOCDataWrapper.paxNames}"/>
+                        <br></br>
+                        <br></br>
+                    </aura:if>
+                    
+                    
+                    
+                    <!--  <b>Status </b><br></br>
+                    <ui:outputText value="{!v.defaultStatus}"/>  -->
+                    
+                    <br></br>
+                    <br></br>
+                    
+                   <!--  <lightning:input aura:id="requestedDetails" label="Enter the Requested Detail" name="requestedDetailName" value = "{!v.finalOCDataWrapper.reqDetails}"/>
+                    -->
+                    
+                    <br></br>
+                    
+                    <div class="slds-align_absolute-center">
+                        <lightning:button variant="brand" label="Back" onclick="{!c.back}"/>
+                        <lightning:button variant="brand" label="Save" onclick="{!c.save}"/>  
+                    <!--    
+                        <lightning:button variant="brand" label="Save and Send" onclick="{!c.saveAndSend}"/>
+                        <lightning:button variant="brand" label="Save and New" onclick="{!c.saveAndNew}"/> -->
+                        <lightning:button variant="brand" label="Cancel" onclick="{!c.closeModal}"/>
+                    </div>
+                    
+                </lightning:layoutItem>
+            </aura:if>
+            
+            
+        </aura:if>
+    </div>
+    
+</aura:component>

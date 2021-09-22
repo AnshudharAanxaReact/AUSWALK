@@ -3,14 +3,20 @@
 
         <types>
         <members>aus_GetPriceApi</members>
+        <members>aus_getAllPrice</members>
+        <members>createCustomisationController</members>
       <name>ApexClass</name>
+        
+      </types>
+     <types>
+         <members>createCustomisationFromOrderQuickAction</members>
+	     <name>AuraDefinitionBundle</name>
     </types>
-
       <types>
-        <members>Update_Order_External_Id_on_creation</members>
+      
          <members>Lead_Populate_External_Id_When_a_New_Lead_Gets_Created</members>
          <name>Flow</name>
-
- </types>
-    <version>51.0</version>
+    </types>
+    
+    <version>52.0</version>
 </Package>

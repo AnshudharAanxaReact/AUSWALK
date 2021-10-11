@@ -1,4 +1,4 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
 	<ltng:require styles="{!$Resource.actionModalPopupSize}" />	
-   <c:attachLogisticForCustomer recordId="{!v.recordId}"></c:attachLogisticForCustomer>
+   <c:attachLogisticForCustomer recordId="{!v.recordId}" onselected="{!c.closePopup}"></c:attachLogisticForCustomer>
 </aura:component>

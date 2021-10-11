@@ -1,10 +1,8 @@
 <template>
 	<lightning-card >
-	
 		<p class="slds-text-heading_small">{activeSectionMessage}</p>
 		<!--<lightning-button onclick={handleSetActiveSectionC} label="Open Section "></lightning-button>-->
 		<template if:true={itinerary}>
-	
 			<lightning-accordion  allow-multiple-sections-open class="example-accordion"  onsectiontoggle={handleToggleSection} active-section-name="B">
 					<lightning-accordion-section  name='Select Guide' label='Select Guide'>
 						<table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped slds-max-medium-table--stacked-horizontal"
@@ -37,6 +35,33 @@
 								</tbody>						
 						</table>
 						</lightning-accordion-section>
+						<template if:true={glTrue}>
+						<lightning-accordion-section  name='General Logistics' label='General Logistics' >
+							<table class="slds-table slds-table--bordered slds-table--cell-buffer slds-table--striped slds-max-medium-table--stacked-horizontal"
+													  role="grid" style="table-layout:fixed;">
+													  <thead>
+														<tr class="slds-line-height_reset">
+															<th class="" scope="col">
+																<div class="slds-truncate" title="First Name">Logistic Name</div>
+															</th>
+															<th class="" scope="col">
+																<div class="slds-truncate" title="Last Name">Price</div>
+															</th>
+															
+														</tr>
+													</thead>
+									<tbody>
+										<template for:each ={generallogistics} for:item="generallogi" for:index="index" >
+											<tr key={generallogi.glogisticName}>
+												<td>{generallogi.glogisticName}</td>
+												<td>{generallogi.glogisticPrice}</td>
+												
+											</tr>
+											</template>
+									</tbody>						
+							</table>
+							</lightning-accordion-section>
+						</template>
 				<template for:each ={itinerary} for:item="itineraryDays" for:index="index" >
 
                     <lightning-accordion-section key={itineraryDays.dayName} name={itineraryDays.dayName} label={itineraryDays.dayName}>
@@ -58,14 +83,14 @@
 													<th class="" scope="col">
 														<div class="slds-truncate" title="Room Type">Room Type</div>
 													</th>
-                                                    <th class="" scope="col">
+                                                    <th class="" scope="col" if:true={itineraryDays.getGeneric}>
 														<div class="slds-truncate" title="Room Type">Rooms Available</div>
 													</th>
 													<th class="" scope="col">
 														<div class="slds-truncate" title="Logistic Pricing">Logistic Pricing</div>
 													</th>
 													<th class="" scope="col">
-														<div class="slds-truncate" title="Price Category">Price Category</div>
+														<div class="slds-truncate" title="Price Category" if:true={itineraryDays.getGeneric}>Price Category</div>
 													</th>
 													<th class="" scope="col">
 														<div class="slds-truncate " title="Price">Price</div>
@@ -89,13 +114,10 @@
 													<lightning-combobox class="roomTypeSelect" name="Room Selection"  value={Accomodation.selectedRoomType}  options={Accomodation.Roomtype} data-id2={index} data-id="Accomodation" data-id1={indexchild} onchange={roomTypeChangeHandler}></lightning-combobox>
 													  </td>
                                                    
-                                                      <td>
-                                                     <!---- <div key={indexchild} for:each={list} for:item='item' for:index='index'>
-                                                            <h2 key={item.roomsAvailable} >
-                                                                {item.roomsAvailable}
-                                                            </h2>
-                                                          </div>  -->
-                                                      </td>
+													  <td >
+													<!--	<p class="slds-panel__header_align-center">{Accomodation.roomsAvailable}</p>-->
+														<lightning-input class="" value={Accomodation.roomsAvailable} disabled=""></lightning-input>
+													  </td>
 													  <td>
 														<lightning-combobox  name="Logistic Pricing"  value={Accomodation.logisticPricing}  options={Accomodation.logisticPricing} data-id3={logisticPricing} data-id2={index} data-id="Accomodation" data-id1={indexchild} onchange={accLogisticPricingChangeHandler}></lightning-combobox>
 														  </td>
@@ -103,17 +125,17 @@
 														<lightning-combobox  name="Price Category"  value={Accomodation.priceCategoryList}  options={Accomodation.priceCategoryList} data-id2={index} data-id="Accomodation" data-id1={indexchild} ></lightning-combobox>
 														  </td>
 													  <td>
-														<lightning-input class=""  type="currency" data-id2={index} data-id="Accomodation" data-id1={indexchild} onchange={priceChangeHandler}></lightning-input>
+														<lightning-input class=""  type="currency" data-id2={index} value={Accomodation.Price} data-id="Accomodation" data-id1={indexchild} onchange={priceChangeHandler}></lightning-input>
 													  </td>
 													</tr>
 
 
-													<tr key={Accomodation.Name} if:false={itineraryDays.getGeneric}>
+												<tr key={Accomodation.Name} if:false={itineraryDays.getGeneric}>
 													
                                                         <td if:false={itineraryDays.getGeneric}>
-															<lightning-input class="slds-p-left_xx-large"  type="checkbox"   data-id2={index}   data-id="Accomodation" data-id1={indexchild} onchange={handleChange} disabled="" checked=""></lightning-input>
+															<lightning-input class=""  type="checkbox"   data-id2={index}   data-id="Accomodation" data-id1={indexchild} onchange={handleChange} disabled="" checked=""></lightning-input>
 														</td>
-														<td>
+														<td class="slds-cell-wrap">
 													{Accomodation.Name}
 													  </td>
 													  <td>
@@ -133,14 +155,12 @@
 														
 														  </td>
 													  <td>
-                                                        <h2 >
-                                                           Per Pax
-                                                        </h2>
+                                                      
 														  </td>
 													  <td>
 														<lightning-input class=""  type="currency" data-id2={index} data-id="Accomodation" data-id1={indexchild} onchange={priceChangeHandler}></lightning-input>
 													  </td>
-													</tr>
+													</tr> 
 												</template>
 											</tbody>
 										</table>
@@ -171,11 +191,11 @@
 											</thead>
 											<tbody>
 												<template for:each ={itineraryDays.Transport} for:item="Transport" for:index="indexchild">
-													<tr key={Transport.Name}>
+													<tr key={Transport.Name} >
 														<td scope="col">
 															<div>
 	
-																<lightning-input class="slds-p-left_xx-large"  type="checkbox" data-id2={index}   data-id="Transport" data-id1={indexchild} onchange={handleChange} placeholder="Update Price"></lightning-input>
+																<lightning-input class=""  type="checkbox" data-id2={index}   data-id="Transport" data-id1={indexchild} onchange={handleChange} placeholder="Update Price"></lightning-input>
 									
 															</div>
 														</td>
@@ -186,9 +206,30 @@
 															<lightning-combobox  name="Logistic Pricing"  value={Transport.logisticPricing}  options={Transport.logisticPricing} data-id2={index} data-id="Transport" data-id1={indexchild} onchange={accLogisticPricingChangeHandler}></lightning-combobox>
 															  </td>
 														<td scope="col">
-															<lightning-input class="slds-p-left_xx-large roomtypePrice"  value={Transport.logisticPricing.price} type="currency" data-id2={index} data-id="Transport" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
+															<lightning-input class=""  value={Transport.logisticPricing.price} type="currency" data-id2={index} data-id="Transport" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
 														  </td>
 													</tr>
+
+												<!--	<tr key={Transport.Name} if:false={itineraryDays.getGeneric}>
+														<td scope="col">
+															<div>
+																<lightning-input class=""  type="checkbox" data-id2={index}   data-id="Transport" data-id1={indexchild} onchange={handleChange} placeholder="Update Price" disabled="" checked=""></lightning-input>
+															</div>
+														</td>
+														<td scope="col">
+															<div>{Transport.Title}</div>
+														</td>
+														<td scope="col">
+															<div key={indexchild} for:each ={Transport.logisticPricing} for:item="transport">
+																<h2 key={transport.value} >
+																	{transport.value}
+																</h2>
+															  </div>
+															  </td>
+														<td scope="col">
+															<lightning-input class=""  value={Transport.logisticPricing.price} type="currency" data-id2={index} data-id="Transport" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
+														  </td>
+													</tr>-->
 												</template>
 											</tbody>
 										</table>
@@ -230,9 +271,7 @@
 													<th class="" scope="col">
 														<div class="slds-truncate" title="Logistic Pricing">Logistic Pricing</div>
 													</th>
-													<th class="" scope="col">
-														<div class="slds-truncate" title="Price Category">Price Category</div>
-													</th>
+												
 													<th class="" scope="col">
 														<div class="slds-truncate" title="Price">Price</div>
 													</th>
@@ -241,10 +280,34 @@
 											<tbody>
 												<template for:each ={itineraryDays.Meal} for:item="Meal" for:index="indexchild">
 									
-													<tr key={Meal.Id}>
+													<tr key={Meal.Id} if:true={itineraryDays.getGeneric}>
 														<td scope="col">
 															<div>
-																<lightning-input class="slds-p-left_xx-large" key={Meal.Name} type="checkbox" data-id2={index}   data-id="Meal" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+																<lightning-input class="" key={Meal.Name} type="checkbox" data-id2={index}   data-id="Meal" data-id1={indexchild} onchange={handleChange} ></lightning-input>
+									
+															</div>
+														</td>
+														<td scope="col">
+															<div>{Meal.Title}</div>
+														</td>
+
+														<td>
+															<lightning-combobox  name="Logistic Pricing"  value={Meal.logisticPricing}  options={Meal.logisticPricing} data-id2={index} data-id="Meal" data-id1={indexchild} onchange={accLogisticPricingChangeHandler}></lightning-combobox>
+															  </td>
+												<!--		<td>
+															<lightning-combobox  name="Price Category"  value={Meal.priceCategoryList}  options={Meal.priceCategoryList} data-id2={index} data-id="Meal" data-id1={indexchild} ></lightning-combobox>
+															  </td>   -->
+														<td scope="col">
+															<lightning-input class="roomtypePrice"  type="currency" data-id2={index} data-id="Meal" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
+														  </td>	
+													</tr>
+
+													<!--    For Generic Data Pre Post Trip-->
+
+													<tr key={Meal.Id} if:false={itineraryDays.getGeneric}>
+														<td scope="col">
+															<div>
+																<lightning-input class="" key={Meal.Name} type="checkbox" data-id2={index}   data-id="Meal" data-id1={indexchild} onchange={handleChange} disabled="" checked=""></lightning-input>
 									
 															</div>
 														</td>
@@ -252,13 +315,17 @@
 															<div>{Meal.Title}</div>
 														</td>
 														<td>
-															<lightning-combobox  name="Logistic Pricing"  value={Meal.logisticPricing}  options={Meal.logisticPricing} data-id2={index} data-id="Meal" data-id1={indexchild} onchange={accLogisticPricingChangeHandler}></lightning-combobox>
+															<div key={indexchild} for:each ={Meal.logisticPricing} for:item="lpv">
+																<h2 key={lpv.value} >
+																	{lpv.value}
+																</h2>
+															  </div>
+	 
+														<!----	<lightning-combobox  name="Logistic Pricing"  value={Meal.logisticPricing}  options={Meal.logisticPricing} data-id2={index} data-id="Meal" data-id1={indexchild} ></lightning-combobox> -->
 															  </td>
-														<td>
-															<lightning-combobox  name="Price Category"  value={Meal.priceCategoryList}  options={Meal.priceCategoryList} data-id2={index} data-id="Meal" data-id1={indexchild} ></lightning-combobox>
-															  </td>
+											
 														<td scope="col">
-															<lightning-input class="slds-p-left_xx-large roomtypePrice"  type="currency" data-id2={index} data-id="Meal" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
+															<lightning-input class="roomtypePrice"  type="currency" data-id2={index} data-id="Meal" data-id1={indexchild} placeholder="Update Price" onchange={priceChangeHandler}></lightning-input>
 														  </td>	
 													</tr>
 												</template>
@@ -329,9 +396,7 @@
 						<th class="" scope="col">
 							<div class="slds-truncate" title="Price">Price</div>
 						</th>
-                        <th class="" scope="col">
-							<div class="slds-truncate" title="Rooms Available">Rooms Available</div>
-						</th>
+                      
 					</tr>
 				</thead>
 				<tbody>
@@ -354,9 +419,7 @@
 									   <td>
 										{item.Price}
 										</td>
-                                        <td>
-                                            {item.roomsAvailable}
-                                            </td>
+                                       
 									 </tr>
 										  
 									</template>

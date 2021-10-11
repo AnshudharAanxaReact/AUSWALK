@@ -23,6 +23,7 @@ public class AttachLogisticForCustomer {
         @auraenabled public string label{get;set;}
         @auraenabled public string value {get;set;}
         @auraenabled public double totalAmount{get;set;}
+        @auraenabled public string passengerType{get;set;}
         @auraenabled public double passengerQuantity{get;set;}
         
     }   

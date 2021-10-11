@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
      <types>
-<members>Guide_Logistics__c</members>
-<name>CustomObject</name>
+<members>Itinerary_Booking_Supplier__c.General_Logistics_Type__c</members>
+<members>Guide_Logistics__c.Unique_Code__c</members>
+<members>Order_logistics__c.Unique_Code__c</members>
+<members>Logistics_Booking__c.Unique_Code__c</members>
+<name>Customfield</name>
 </types>
 
 <types>
@@ -10,7 +13,7 @@
 <members>AttachLogisticForGuides</members>
 <name>apexclass</name>
 </types>
-
+<!--
 <types>
 <members>aus_AttachLogisticForCustomerComponent</members>
 <members>aus_AttachLogisticForGuidesComponent</members>
@@ -21,6 +24,6 @@
 <members>Orders__c.Attach_Logistic_For_Customer</members>
 <members>Trip_Option__c.Attach_Logistic_For_Guides</members>
 <name>QuickAction</name>
-</types>
+</types>   -->
     <version>52.0</version>
 </Package>
